@@ -1,0 +1,971 @@
+{
+  "source_path": "/Users/zhanjuanyi/Desktop/Russian_Data_Cleaning_Agent/outputs/smoke_samples/penitentiary_smoke_p118_121.pdf",
+  "source_type": "pdf",
+  "page_count": 4,
+  "sanitized_pages_dir": "outputs/full_book_runs/local_smoke/run_local_smoke_stage1/penitentiary_smoke_p118_121/layout_sanitize/penitentiary_smoke_p118_121.sanitized_pages",
+  "pages": [
+    {
+      "page_id": "penitentiary_smoke_p118_121:page_1",
+      "page_number": 1,
+      "source_path": "/Users/zhanjuanyi/Desktop/Russian_Data_Cleaning_Agent/outputs/smoke_samples/penitentiary_smoke_p118_121.pdf",
+      "source_type": "pdf",
+      "width": 840,
+      "height": 1190,
+      "sanitized_image_path": "outputs/full_book_runs/local_smoke/run_local_smoke_stage1/penitentiary_smoke_p118_121/layout_sanitize/penitentiary_smoke_p118_121.sanitized_pages/page_0001.png",
+      "regions": [
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            96,
+            89,
+            736,
+            223
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9848425388336182,
+          "ocr_text": "",
+          "reading_order": 0,
+          "layout_confidence": 0.9848425388336182,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            96,
+            230,
+            737,
+            339
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.980652928352356,
+          "ocr_text": "",
+          "reading_order": 1,
+          "layout_confidence": 0.980652928352356,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            98,
+            375,
+            419,
+            394
+          ],
+          "raw_label": "paragraph_title",
+          "mapped_label": "title",
+          "action": "keep",
+          "confidence": 0.9140438437461853,
+          "ocr_text": "",
+          "reading_order": 2,
+          "layout_confidence": 0.9140438437461853,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            151,
+            407,
+            503,
+            428
+          ],
+          "raw_label": "paragraph_title",
+          "mapped_label": "title",
+          "action": "keep",
+          "confidence": 0.892924427986145,
+          "ocr_text": "",
+          "reading_order": 3,
+          "layout_confidence": 0.892924427986145,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            96,
+            449,
+            737,
+            558
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9835716485977173,
+          "ocr_text": "",
+          "reading_order": 4,
+          "layout_confidence": 0.9835716485977173,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            135,
+            565,
+            737,
+            604
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9409219622612,
+          "ocr_text": "",
+          "reading_order": 5,
+          "layout_confidence": 0.9409219622612,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            135,
+            611,
+            737,
+            650
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9484823346138,
+          "ocr_text": "",
+          "reading_order": 6,
+          "layout_confidence": 0.9484823346138,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            135,
+            656,
+            738,
+            695
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9535362124443054,
+          "ocr_text": "",
+          "reading_order": 7,
+          "layout_confidence": 0.9535362124443054,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            135,
+            703,
+            737,
+            741
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9510083794593811,
+          "ocr_text": "",
+          "reading_order": 8,
+          "layout_confidence": 0.9510083794593811,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            135,
+            750,
+            737,
+            788
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9543466567993164,
+          "ocr_text": "",
+          "reading_order": 9,
+          "layout_confidence": 0.9543466567993164,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            96,
+            795,
+            738,
+            903
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9825552701950073,
+          "ocr_text": "",
+          "reading_order": 10,
+          "layout_confidence": 0.9825552701950073,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            96,
+            909,
+            737,
+            994
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.978927493095398,
+          "ocr_text": "",
+          "reading_order": 11,
+          "layout_confidence": 0.978927493095398,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            96,
+            1000,
+            737,
+            1087
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9773788452148438,
+          "ocr_text": "",
+          "reading_order": 12,
+          "layout_confidence": 0.9773788452148438,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_1",
+          "bbox": [
+            710,
+            1115,
+            737,
+            1130
+          ],
+          "raw_label": "number",
+          "mapped_label": "note",
+          "action": "mask",
+          "confidence": 0.8732622861862183,
+          "ocr_text": "",
+          "reading_order": 13,
+          "layout_confidence": 0.8732622861862183,
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "page_id": "penitentiary_smoke_p118_121:page_2",
+      "page_number": 2,
+      "source_path": "/Users/zhanjuanyi/Desktop/Russian_Data_Cleaning_Agent/outputs/smoke_samples/penitentiary_smoke_p118_121.pdf",
+      "source_type": "pdf",
+      "width": 840,
+      "height": 1190,
+      "sanitized_image_path": "outputs/full_book_runs/local_smoke/run_local_smoke_stage1/penitentiary_smoke_p118_121/layout_sanitize/penitentiary_smoke_p118_121.sanitized_pages/page_0002.png",
+      "regions": [
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            96,
+            90,
+            738,
+            175
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.981010377407074,
+          "ocr_text": "",
+          "reading_order": 0,
+          "layout_confidence": 0.981010377407074,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            96,
+            181,
+            737,
+            290
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9815829396247864,
+          "ocr_text": "",
+          "reading_order": 1,
+          "layout_confidence": 0.9815829396247864,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            96,
+            298,
+            737,
+            408
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.981989860534668,
+          "ocr_text": "",
+          "reading_order": 2,
+          "layout_confidence": 0.981989860534668,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            131,
+            415,
+            617,
+            431
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.8827566504478455,
+          "ocr_text": "",
+          "reading_order": 3,
+          "layout_confidence": 0.8827566504478455,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            440,
+            382,
+            455
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.8920912742614746,
+          "ocr_text": "",
+          "reading_order": 4,
+          "layout_confidence": 0.8920912742614746,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            464,
+            655,
+            480
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.8991058468818665,
+          "ocr_text": "",
+          "reading_order": 5,
+          "layout_confidence": 0.8991058468818665,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            488,
+            737,
+            551
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.968329131603241,
+          "ocr_text": "",
+          "reading_order": 6,
+          "layout_confidence": 0.968329131603241,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            559,
+            738,
+            620
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9686207175254822,
+          "ocr_text": "",
+          "reading_order": 7,
+          "layout_confidence": 0.9686207175254822,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            136,
+            629,
+            737,
+            692
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.971633791923523,
+          "ocr_text": "",
+          "reading_order": 8,
+          "layout_confidence": 0.971633791923523,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            700,
+            737,
+            740
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9502409100532532,
+          "ocr_text": "",
+          "reading_order": 9,
+          "layout_confidence": 0.9502409100532532,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            747,
+            737,
+            786
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9556416273117065,
+          "ocr_text": "",
+          "reading_order": 10,
+          "layout_confidence": 0.9556416273117065,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            795,
+            738,
+            833
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9384942650794983,
+          "ocr_text": "",
+          "reading_order": 11,
+          "layout_confidence": 0.9384942650794983,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            97,
+            841,
+            737,
+            881
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9354900121688843,
+          "ocr_text": "",
+          "reading_order": 12,
+          "layout_confidence": 0.9354900121688843,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            888,
+            738,
+            974
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9749143719673157,
+          "ocr_text": "",
+          "reading_order": 13,
+          "layout_confidence": 0.9749143719673157,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            982,
+            738,
+            1023
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9528639316558838,
+          "ocr_text": "",
+          "reading_order": 14,
+          "layout_confidence": 0.9528639316558838,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            135,
+            1030,
+            737,
+            1069
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9466133117675781,
+          "ocr_text": "",
+          "reading_order": 15,
+          "layout_confidence": 0.9466133117675781,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            136,
+            1076,
+            734,
+            1094
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.894144594669342,
+          "ocr_text": "",
+          "reading_order": 16,
+          "layout_confidence": 0.894144594669342,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_2",
+          "bbox": [
+            100,
+            1115,
+            127,
+            1130
+          ],
+          "raw_label": "number",
+          "mapped_label": "note",
+          "action": "mask",
+          "confidence": 0.8820238709449768,
+          "ocr_text": "",
+          "reading_order": 17,
+          "layout_confidence": 0.8820238709449768,
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "page_id": "penitentiary_smoke_p118_121:page_3",
+      "page_number": 3,
+      "source_path": "/Users/zhanjuanyi/Desktop/Russian_Data_Cleaning_Agent/outputs/smoke_samples/penitentiary_smoke_p118_121.pdf",
+      "source_type": "pdf",
+      "width": 840,
+      "height": 1190,
+      "sanitized_image_path": "outputs/full_book_runs/local_smoke/run_local_smoke_stage1/penitentiary_smoke_p118_121/layout_sanitize/penitentiary_smoke_p118_121.sanitized_pages/page_0003.png",
+      "regions": [
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            136,
+            90,
+            738,
+            153
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9658934473991394,
+          "ocr_text": "",
+          "reading_order": 0,
+          "layout_confidence": 0.9658934473991394,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            135,
+            160,
+            738,
+            318
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9794674515724182,
+          "ocr_text": "",
+          "reading_order": 1,
+          "layout_confidence": 0.9794674515724182,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            96,
+            323,
+            738,
+            553
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9843830466270447,
+          "ocr_text": "",
+          "reading_order": 2,
+          "layout_confidence": 0.9843830466270447,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            96,
+            559,
+            738,
+            645
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9709543585777283,
+          "ocr_text": "",
+          "reading_order": 3,
+          "layout_confidence": 0.9709543585777283,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            96,
+            653,
+            737,
+            786
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9804617166519165,
+          "ocr_text": "",
+          "reading_order": 4,
+          "layout_confidence": 0.9804617166519165,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            97,
+            792,
+            737,
+            904
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9776466488838196,
+          "ocr_text": "",
+          "reading_order": 5,
+          "layout_confidence": 0.9776466488838196,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            96,
+            910,
+            737,
+            974
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9643458127975464,
+          "ocr_text": "",
+          "reading_order": 6,
+          "layout_confidence": 0.9643458127975464,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            96,
+            981,
+            737,
+            1094
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9767667651176453,
+          "ocr_text": "",
+          "reading_order": 7,
+          "layout_confidence": 0.9767667651176453,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_3",
+          "bbox": [
+            710,
+            1115,
+            737,
+            1130
+          ],
+          "raw_label": "number",
+          "mapped_label": "note",
+          "action": "mask",
+          "confidence": 0.8781198859214783,
+          "ocr_text": "",
+          "reading_order": 8,
+          "layout_confidence": 0.8781198859214783,
+          "ocr_confidence": null
+        }
+      ]
+    },
+    {
+      "page_id": "penitentiary_smoke_p118_121:page_4",
+      "page_number": 4,
+      "source_path": "/Users/zhanjuanyi/Desktop/Russian_Data_Cleaning_Agent/outputs/smoke_samples/penitentiary_smoke_p118_121.pdf",
+      "source_type": "pdf",
+      "width": 840,
+      "height": 1190,
+      "sanitized_image_path": "outputs/full_book_runs/local_smoke/run_local_smoke_stage1/penitentiary_smoke_p118_121/layout_sanitize/penitentiary_smoke_p118_121.sanitized_pages/page_0004.png",
+      "regions": [
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            96,
+            89,
+            737,
+            181
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9794517755508423,
+          "ocr_text": "",
+          "reading_order": 0,
+          "layout_confidence": 0.9794517755508423,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            97,
+            187,
+            737,
+            255
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9697830677032471,
+          "ocr_text": "",
+          "reading_order": 1,
+          "layout_confidence": 0.9697830677032471,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            96,
+            261,
+            737,
+            375
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9807953238487244,
+          "ocr_text": "",
+          "reading_order": 2,
+          "layout_confidence": 0.9807953238487244,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            97,
+            384,
+            737,
+            474
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9768574237823486,
+          "ocr_text": "",
+          "reading_order": 3,
+          "layout_confidence": 0.9768574237823486,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            97,
+            482,
+            738,
+            573
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9769350290298462,
+          "ocr_text": "",
+          "reading_order": 4,
+          "layout_confidence": 0.9769350290298462,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            97,
+            581,
+            738,
+            646
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9708026647567749,
+          "ocr_text": "",
+          "reading_order": 5,
+          "layout_confidence": 0.9708026647567749,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            97,
+            653,
+            739,
+            696
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9566509127616882,
+          "ocr_text": "",
+          "reading_order": 6,
+          "layout_confidence": 0.9566509127616882,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            135,
+            704,
+            738,
+            769
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9681901931762695,
+          "ocr_text": "",
+          "reading_order": 7,
+          "layout_confidence": 0.9681901931762695,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            135,
+            779,
+            737,
+            819
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.958173394203186,
+          "ocr_text": "",
+          "reading_order": 8,
+          "layout_confidence": 0.958173394203186,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            135,
+            829,
+            737,
+            868
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9579776525497437,
+          "ocr_text": "",
+          "reading_order": 9,
+          "layout_confidence": 0.9579776525497437,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            96,
+            878,
+            738,
+            992
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9816998839378357,
+          "ocr_text": "",
+          "reading_order": 10,
+          "layout_confidence": 0.9816998839378357,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            97,
+            999,
+            738,
+            1089
+          ],
+          "raw_label": "text",
+          "mapped_label": "body",
+          "action": "keep",
+          "confidence": 0.9762184619903564,
+          "ocr_text": "",
+          "reading_order": 11,
+          "layout_confidence": 0.9762184619903564,
+          "ocr_confidence": null
+        },
+        {
+          "page_id": "penitentiary_smoke_p118_121:page_4",
+          "bbox": [
+            100,
+            1115,
+            127,
+            1130
+          ],
+          "raw_label": "number",
+          "mapped_label": "note",
+          "action": "mask",
+          "confidence": 0.8876773715019226,
+          "ocr_text": "",
+          "reading_order": 12,
+          "layout_confidence": 0.8876773715019226,
+          "ocr_confidence": null
+        }
+      ]
+    }
+  ],
+  "final_text": ""
+}
