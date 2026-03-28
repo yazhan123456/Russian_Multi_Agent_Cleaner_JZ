@@ -41,6 +41,10 @@ This folder is a lightweight interview/demo package extracted from the main proj
 
 ## Visual Before/After
 
+Side-by-side comparison:
+
+![Before and after](sample_output/page_compare.png)
+
 Original page:
 
 ![Original page](sample_input/page_0001_original.png)
