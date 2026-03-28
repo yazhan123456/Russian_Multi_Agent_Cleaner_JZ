@@ -1,6 +1,6 @@
 # Russian Data Cleaning Agent Demo
 
-This folder is a lightweight interview/demo package extracted from the main project:
+This folder is a lightweight public-facing demo package extracted from the main project:
 
 - purpose: show the problem, the pipeline, and a small before/after example without opening the full workspace first
 - this repo is intentionally a demo package, not the full codebase
@@ -8,8 +8,8 @@ This folder is a lightweight interview/demo package extracted from the main proj
 ## Start Here
 
 1. Read [docs/PROJECT_README.md](docs/PROJECT_README.md)
-2. Read [docs/INTERVIEW_DEMO.md](docs/INTERVIEW_DEMO.md)
-3. Read the Chinese demo script in [docs/DEMO_CN.md](docs/DEMO_CN.md)
+2. Read the English walkthrough in [docs/INTERVIEW_DEMO.md](docs/INTERVIEW_DEMO.md)
+3. Read the Chinese overview in [docs/DEMO_CN.md](docs/DEMO_CN.md)
 4. Open the original input page in [sample_input/page_0001_original.png](sample_input/page_0001_original.png)
 5. Compare it with the sanitized page and JSON in [sample_output](sample_output)
 
@@ -18,9 +18,9 @@ This folder is a lightweight interview/demo package extracted from the main proj
 - `docs/PROJECT_README.md`
   - high-level project introduction and architecture
 - `docs/INTERVIEW_DEMO.md`
-  - short demo script and interview talking points
+  - English walkthrough of the demo package
 - `docs/DEMO_CN.md`
-  - Chinese interview/demo script
+  - Chinese project overview
 - `sample_input/page_0001_original.png`
   - original page image used for the demo
 - `sample_output/penitentiary_smoke_p118_121.layout_ocr.json`
@@ -32,7 +32,7 @@ This folder is a lightweight interview/demo package extracted from the main proj
 - `sample_output/Международное_право_...txt`
   - another cleaned output example from a legal text
 
-## Recommended Demo Order
+## Recommended Viewing Order
 
 1. Show the original input page image.
 2. Show the sanitized page image and explain that `title/body` are kept while `note/picture/table` are masked.
@@ -53,7 +53,7 @@ Sanitized page:
 
 ![Sanitized page](sample_output/page_0001_sanitized.png)
 
-## Main Story
+## What This Demo Represents
 
 This project is not just OCR.
 

@@ -1,150 +1,105 @@
-# Interview Demo Guide
+# Demo Walkthrough
 
-This guide is for presenting the project as an internship portfolio piece.
+This document explains the demo package as a project overview, not as a speaking script.
 
-## What To Show
+## What This Demo Shows
 
-Do not try to explain every module first.
+This repository is a lightweight presentation package for a Russian document cleaning system.
 
-Start with:
+The demo focuses on one core idea:
 
-1. a messy Russian PDF page
-2. one command that runs the pipeline
-3. the cleaned TXT output
+- noisy document pages are filtered before text extraction
+- non-body regions are suppressed
+- the downstream text is cleaner and more usable for research workflows
 
-Then explain the architecture.
+## Problem
 
-## Recommended Demo Assets
+Russian academic, legal, and historical PDFs are often not usable after plain OCR.
 
-Prepare one small sample book or a short extracted sample with:
+Common failure modes include:
 
-- one clean body page
-- one page with figure captions or notes
-- one page with difficult formatting
+- running headers and page numbers leaking into body text
+- figure captions and notes polluting paragraphs
+- picture and table regions being treated as body text
+- A3 double-page scans confusing layout analysis
+- OCR introducing hyphenation breaks and glued words
 
-Good demo artifacts:
+This project addresses document cleaning as a long-document systems problem, not only as an OCR problem.
 
-- original PDF page
-- `layout_sanitize/*.sanitized_pages/page_XXXX.png`
-- `ocr.json`
-- final TXT snippet
+## Pipeline Summary
 
-## 30-Second Pitch
+The full system is organized as a staged pipeline:
 
-Use this if the interviewer asks “what is this project?”
+1. optional document preprocessing
+2. Paddle-based layout sanitization
+3. OCR / text-extraction routing
+4. rule cleaning
+5. model cleaning
+6. review
+7. repair
+8. structure restore
+9. export + post-clean
 
-> I built a Russian document cleaning pipeline for long academic and legal PDFs. It uses layout masking, OCR/extract routing, LLM-based cleaning and repair, and export-time post-processing to turn noisy PDFs into cleaner research text. The system is stateful, supports checkpoint/resume, and is designed for long-running book-scale jobs rather than one-off OCR.
+Key design choices:
 
-## 2-Minute Demo Script
+- keep `title/body`
+- mask `note/picture/table`
+- prefer `extract` when the PDF text layer is good
+- send only riskier pages through heavier processing
+- support checkpoint/resume for long book jobs
 
-1. Show a noisy input page.
-   - point out figure captions, page headers, notes, or broken line wraps
-2. Show the command:
+## Suggested Viewing Order
 
-```bash
-python3 scripts/process_books.py \
-  --profile balanced_cost \
-  --book '5/YourBook.pdf' \
-  --run-root outputs/full_book_runs/demo_run \
-  --final-txt-dir outputs/final_txt \
-  --resume \
-  --prevent-sleep
-```
+1. Open the original input page  
+   [sample_input/page_0001_original.png](../sample_input/page_0001_original.png)
 
-3. Explain the stages:
-   - Paddle masks note/picture/table regions
-   - OCR/extract picks the cheapest usable text path
-   - rules + DeepSeek clean and repair text
-   - export-time cleanup fixes figure captions and hyphenation
-4. Show the final TXT output.
-5. Point out one concrete bug you fixed during development:
-   - mid-book bibliography truncation
-   - page header leakage into `extract`
-   - A3 split before layout sanitize
+2. Open the sanitized page  
+   [sample_output/page_0001_sanitized.png](../sample_output/page_0001_sanitized.png)
 
-## 5-Minute Technical Walkthrough
+3. Open the side-by-side comparison  
+   [sample_output/page_compare.png](../sample_output/page_compare.png)
 
-If they want details, cover these:
+4. Inspect the layout output  
+   [sample_output/penitentiary_smoke_p118_121.layout_ocr.json](../sample_output/penitentiary_smoke_p118_121.layout_ocr.json)
 
-### 1. Problem framing
+5. Inspect the cleaned text outputs  
+   - [Жизнь_и_смерть_...txt](../sample_output/Жизнь_и_смерть_в_России_скои__империи__Новые_открытия_в_области_археологии_и_истории_России_XVIII_XIX_вв____Life_and_Dea.txt)
+   - [Международное_право_...txt](../sample_output/Международное_право_и_правовая_система_Российской_Федерации.txt)
 
-- Russian research PDFs are not solved by simple OCR.
-- The challenge is not just recognition but filtering and cleanup.
+## Why The Sample Page Matters
 
-### 2. System design
+The selected sample page contains:
 
-- `process_books.py` orchestrates the full pipeline
-- `PageState` and the state machine make long jobs resumable
-- Paddle does local layout masking
-- OCR/extract chooses the cheapest usable path
-- DeepSeek handles cleaning, repair, and structure restoration
-- post-clean rules catch recurring deterministic errors
+- a section heading
+- multiple image regions
+- multiple caption blocks
+- two-column body text
 
-### 3. Engineering tradeoffs
+This makes the before/after difference easy to see:
 
-- keep body recall high, even if some note noise remains
-- prefer `extract` over OCR when text layer is good
-- use page-level checkpoints so book jobs can resume safely
-- keep review as the formal diagnosis stage
+- image-heavy regions are suppressed
+- non-body regions no longer dominate the page
+- body text remains available for downstream extraction and cleaning
 
-### 4. Results
+## Engineering Value
 
-Mention things like:
+The main interest of the project is not prompt engineering alone.
 
-- full-book processing instead of page toy demos
-- reduced manual cropping for pictures and notes
-- automatic recovery from failures
-- cleaner TXT output for downstream RAG
+The engineering value comes from:
 
-## Questions You Should Expect
+- staged responsibility separation
+- page-level state tracking
+- recoverable long-running jobs
+- layout masking before OCR/extraction
+- deterministic post-cleaning for recurring OCR artifacts
 
-### “Why not just use one multimodal model?”
+## Limitations
 
-Because the problem is not only OCR quality. It also needs:
+This is a practical research-text cleaning system, not a perfect publishing-grade engine.
 
-- layout filtering
-- page routing
-- deterministic cleanup
-- checkpoint/resume
-- cost control on long books
+Known limitations include:
 
-### “Why use multiple stages instead of one model?”
-
-Because diagnosis, repair, and structure restoration have different failure modes. Separating them makes debugging and recovery much easier.
-
-### “What was the hardest engineering problem?”
-
-Good answers:
-
-- keeping state consistent across long runs
-- preventing page headers/figure captions from leaking back through extraction
-- balancing body recall against aggressive cleanup
-
-## Resume Bullets
-
-### Chinese
-
-- 构建面向俄语学术/法律 PDF 的长文档清洗系统，支持布局分流、OCR/extract 路由、页级状态恢复与断点续跑。
-- 集成 Paddle 版面检测、Qwen OCR、DeepSeek 清洗/修复/结构恢复，降低图注、页眉、尾注对正文抽取的污染。
-- 设计导出后规则收尾模块，修复断词、混合同形字、图注残留和 backmatter 截断等长文档清洗问题。
-
-### English
-
-- Built a long-document Russian text cleaning pipeline with layout masking, OCR/extract routing, page-level checkpointing, and resume support.
-- Integrated Paddle layout detection, Qwen OCR, and DeepSeek cleaning/repair/structure stages to reduce figure-caption, header, and note pollution in extracted text.
-- Implemented export-time rule cleanup for hyphenation, mixed-script OCR artifacts, caption leakage, and backmatter truncation issues.
-
-## What Not To Do In An Interview
-
-- do not start by listing every file in the repo
-- do not describe it as “just an OCR bot”
-- do not overclaim perfect accuracy
-- do not focus only on prompt engineering
-
-Instead, show:
-
-- the document problem
-- the pipeline design
-- the engineering constraints
-- the concrete before/after result
-
+- some caption leakage may remain on difficult pages
+- glued words and OCR artifacts still need post-clean rules
+- quality varies across document types
+- the demo package is intentionally smaller than the full codebase
