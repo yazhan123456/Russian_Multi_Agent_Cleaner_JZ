@@ -1,0 +1,252 @@
+{
+  "language": "en",
+  "corpus_mode": "english_research_rag",
+  "version": "2026-03-22",
+  "principles": [
+    "Use the same pipeline-plus-agent architecture as the Russian workflow.",
+    "Let deterministic rules remove obvious non-body material before any model call.",
+    "Preserve body-text meaning and order; never rewrite or summarize content.",
+    "Prefer archiving notes and bibliographies over silently mixing them into the body corpus.",
+    "Escalate structural ambiguity to model review and repair instead of guessing."
+  ],
+  "pipeline": {
+    "ingestion": {
+      "goal": "Extract page text first; OCR only when extraction quality is suspicious or the page is image-only."
+    },
+    "router": {
+      "drop_page_types": [
+        "front_matter_drop",
+        "toc_drop",
+        "index_drop",
+        "publisher_meta_drop",
+        "garbled_drop"
+      ],
+      "archive_page_types": [
+        "notes_archive",
+        "bibliography_archive"
+      ],
+      "body_page_types": [
+        "body_keep",
+        "body_with_note_suffix",
+        "parallel_translation_page"
+      ]
+    },
+    "rules": {
+      "goal": "Strip low-risk note markers, repeated headers/footers, line-wrap artifacts, and deterministic reference tails."
+    },
+    "agent": {
+      "goal": "Restore headings, paragraph boundaries, and resolve ambiguous note-vs-body cases."
+    },
+    "review": {
+      "goal": "Tag residual issues and route only risky pages into repair."
+    },
+    "repair": {
+      "goal": "Fix remaining suffix references, heading merges, and parallel-text remnants."
+    },
+    "final_outputs": {
+      "body_text": "Primary clean text for RAG ingestion.",
+      "notes_archive": "Structured note/endnote text kept outside the body corpus.",
+      "bibliography_archive": "References/works-cited text kept outside the body corpus.",
+      "metadata": "Page-routing and cleaning decisions."
+    }
+  },
+  "must_clean": [
+    {
+      "id": "soft_hyphen",
+      "action": "normalize",
+      "description": "Remove discretionary soft hyphen characters inserted by OCR or PDF extraction.",
+      "patterns": [
+        "\\u00AD"
+      ]
+    },
+    {
+      "id": "zero_width_chars",
+      "action": "normalize",
+      "description": "Strip zero-width and other invisible formatting characters.",
+      "patterns": [
+        "[\\u200B-\\u200D\\u2060\\uFEFF]"
+      ]
+    },
+    {
+      "id": "line_end_hyphenation",
+      "action": "normalize",
+      "description": "Rejoin English words broken by line-wrap hyphenation across lines.",
+      "patterns": [
+        "(?<=[A-Za-z])[-\\u2010\\u2011]\\s*\\n\\s*(?=[A-Za-z])"
+      ]
+    },
+    {
+      "id": "fake_paragraph_breaks",
+      "action": "normalize",
+      "description": "Merge line breaks inside normal prose paragraphs when the next line is not a heading, list, or table row."
+    },
+    {
+      "id": "repeated_headers_footers",
+      "action": "delete",
+      "description": "Remove repeated page headers, footers, and running page numbers."
+    },
+    {
+      "id": "spacing_cleanup",
+      "action": "normalize",
+      "description": "Collapse duplicate spaces and normalize spacing around punctuation."
+    },
+    {
+      "id": "inline_note_marker_strip",
+      "action": "delete",
+      "description": "Delete low-risk inline note markers such as word12, [12], or superscript note numbers when clearly not body values."
+    },
+    {
+      "id": "trailing_reference_block_strip",
+      "action": "delete",
+      "description": "Trim trailing reference-only or note-only suffix blocks from body pages using deterministic cues."
+    }
+  ],
+  "page_routing": {
+    "drop": [
+      {
+        "id": "front_matter_drop",
+        "description": "Drop title pages, acknowledgements, publication logistics, marketing pages, and other non-body front matter.",
+        "cues": [
+          "Copyright",
+          "All rights reserved",
+          "Published by",
+          "Library of Congress",
+          "ISBN",
+          "Acknowledgements",
+          "About the author"
+        ]
+      },
+      {
+        "id": "toc_drop",
+        "description": "Drop table-of-contents pages from the body corpus.",
+        "cues": [
+          "Contents",
+          "Table of Contents"
+        ]
+      },
+      {
+        "id": "index_drop",
+        "description": "Drop back-of-book index pages from the body corpus.",
+        "cues": [
+          "Index"
+        ]
+      },
+      {
+        "id": "publisher_meta_drop",
+        "description": "Drop publisher logistics, printing details, sales/contact pages, and similar metadata.",
+        "cues": [
+          "Printed in",
+          "Typeset by",
+          "Designed by",
+          "Cover design",
+          "For information contact",
+          "www."
+        ]
+      },
+      {
+        "id": "garbled_drop",
+        "description": "Drop pages that are clearly mojibake, watermark-only, or unrecoverable extraction noise."
+      }
+    ],
+    "archive": [
+      {
+        "id": "notes_archive",
+        "description": "Archive footnote/endnote pages or note-heavy suffix pages instead of leaving them in the body corpus.",
+        "cues": [
+          "Notes",
+          "Endnotes"
+        ]
+      },
+      {
+        "id": "bibliography_archive",
+        "description": "Archive references/bibliography/works-cited pages separately from body text.",
+        "cues": [
+          "References",
+          "Bibliography",
+          "Works Cited",
+          "Further Reading"
+        ]
+      }
+    ]
+  },
+  "conditional_clean": [
+    {
+      "id": "citation_markers",
+      "action": "flag",
+      "description": "Bracket citations and author-year citations may be removable from body text, but should be reviewed if they might be part of scholarly argument.",
+      "patterns": [
+        "\\[[0-9,\\- ]+\\]",
+        "\\([A-Z][^\\)]{0,80},\\s*(19|20)\\d{2}\\)"
+      ]
+    },
+    {
+      "id": "parallel_translation_page",
+      "action": "flag",
+      "description": "A page may contain English text paired with Russian translation or vice versa; route to review rather than merging blindly."
+    },
+    {
+      "id": "legal_structural_numbering",
+      "action": "flag",
+      "description": "Legal article numbers, section numbers, and clause numbering must not be mistaken for note markers."
+    },
+    {
+      "id": "bibliography_suffix_left",
+      "action": "flag",
+      "description": "A body page may still contain a trailing bibliography or notes suffix after rule cleanup."
+    }
+  ],
+  "protected_keep": [
+    {
+      "id": "lexical_hyphen_words",
+      "description": "Preserve true lexical hyphens in English words and names.",
+      "examples": [
+        "state-of-the-art",
+        "well-being",
+        "St. Petersburg-based"
+      ]
+    },
+    {
+      "id": "roman_numerals_and_headings",
+      "description": "Preserve Roman numerals and section headings."
+    },
+    {
+      "id": "legal_numbering",
+      "description": "Preserve article numbers, section numbering, and clause labels."
+    },
+    {
+      "id": "dates_values_units",
+      "description": "Preserve dates, percentages, currency values, and measurement units."
+    },
+    {
+      "id": "urls_emails_identifiers",
+      "description": "Preserve URLs, emails, and identifiers only when they belong to body content rather than publisher metadata or references."
+    }
+  ],
+  "agent_policy": {
+    "cleaning_agent": {
+      "must_do": [
+        "Keep only body text in the main cleaned stream.",
+        "Allow notes and bibliography material to be archived separately.",
+        "Restore headings and paragraph structure conservatively."
+      ],
+      "must_not_do": [
+        "Invent missing text",
+        "Rewrite garbled pages into fluent prose",
+        "Merge parallel translations into a single paragraph"
+      ]
+    },
+    "review_agent": {
+      "must_do": [
+        "Detect residual note markers, bibliography suffixes, glossary/index material, and parallel-text remnants.",
+        "Escalate ambiguous legal numbering instead of deleting it."
+      ]
+    },
+    "repair_agent": {
+      "must_do": [
+        "Remove residual note and bibliography suffixes on risky pages.",
+        "Repair heading merges and paragraph flattening.",
+        "Keep archived note/bibliography material out of the body corpus."
+      ]
+    }
+  }
+}

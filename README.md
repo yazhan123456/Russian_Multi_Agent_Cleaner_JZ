@@ -31,6 +31,14 @@ This folder is a lightweight public-facing demo package extracted from the main 
   - a real cleaned output example from a larger book
 - `sample_output/Международное_право_...txt`
   - another cleaned output example from a legal text
+- `src/`
+  - core pipeline implementation
+- `scripts/`
+  - runnable entrypoints and utilities
+- `tests/`
+  - regression tests for pipeline behavior
+- `config/`
+  - rule/config files used by the pipeline
 
 ## Recommended Viewing Order
 
@@ -66,4 +74,11 @@ It is a recoverable, page-state-driven Russian document cleaning pipeline for lo
 
 ## If You Need The Full Repo
 
-The full project codebase is kept separately from this demo package.
+This demo package now includes the main code directories needed to inspect the implementation:
+
+- `src/`
+- `scripts/`
+- `tests/`
+- `config/`
+
+Large run artifacts, checkpoints, and output folders are intentionally excluded.

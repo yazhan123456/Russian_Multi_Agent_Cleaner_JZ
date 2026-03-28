@@ -1,0 +1,244 @@
+{
+  "language": "ru",
+  "version": "2026-03-21",
+  "principles": [
+    "Prefer normalization over deletion.",
+    "Keep raw text and cleaned text in parallel.",
+    "Only delete layout noise or recoverable OCR artifacts automatically.",
+    "Route ambiguous edits to review instead of guessing.",
+    "Protected spans must survive cleaning unless the review agent explicitly approves removal."
+  ],
+  "agent_policy": {
+    "ocr_agent": {
+      "must_do": [
+        "Extract page text, token positions, confidence hints, and page order.",
+        "Keep page anchors so every cleaned span can map back to the source page."
+      ],
+      "must_not_do": [
+        "Delete content",
+        "Repair meaning semantically",
+        "Normalize e/yo or Latin/Cyrillic ambiguities"
+      ]
+    },
+    "cleaning_agent": {
+      "must_do": [
+        "Apply must_clean rules automatically with edit logs.",
+        "Flag conditional rules for review.",
+        "Honor protected spans before any deletion or merge."
+      ],
+      "must_not_do": [
+        "Drop citations, footnotes, or numbering blindly",
+        "Rewrite prose for style"
+      ]
+    },
+    "review_agent": {
+      "must_do": [
+        "Check ambiguous edits against the source image and OCR text.",
+        "Reject edits that remove real Russian lexical hyphens, abbreviations, numbering, or factual values."
+      ],
+      "must_not_do": [
+        "Approve deletions without source evidence",
+        "Change the document meaning while fixing OCR artifacts"
+      ]
+    }
+  },
+  "must_clean": [
+    {
+      "id": "soft_hyphen",
+      "action": "normalize",
+      "description": "Remove discretionary soft hyphen characters inserted by OCR or PDF extraction.",
+      "patterns": [
+        "\\u00AD"
+      ]
+    },
+    {
+      "id": "zero_width_chars",
+      "action": "normalize",
+      "description": "Strip zero-width and other invisible formatting characters.",
+      "patterns": [
+        "[\\u200B-\\u200D\\u2060\\uFEFF]"
+      ]
+    },
+    {
+      "id": "line_end_hyphenation",
+      "action": "normalize",
+      "description": "Rejoin words that were broken by line-wrap hyphenation across lines.",
+      "patterns": [
+        "(?<=[А-Яа-яЁё])[-\\u2010\\u2011]\\s*\\n\\s*(?=[А-Яа-яЁё])"
+      ],
+      "exceptions_reference": "protected_keep.lexical_hyphen_words"
+    },
+    {
+      "id": "fake_paragraph_breaks",
+      "action": "normalize",
+      "description": "Merge line breaks inside the same paragraph when the next line is not a true heading, list item, or table row.",
+      "heuristics": [
+        "Current line does not end with sentence-final punctuation.",
+        "Next line starts with lowercase Cyrillic.",
+        "Protected structures do not match."
+      ]
+    },
+    {
+      "id": "repeated_headers_footers",
+      "action": "delete",
+      "description": "Remove page headers, footers, and page numbers repeated across multiple pages with near-identical text."
+    },
+    {
+      "id": "spacing_cleanup",
+      "action": "normalize",
+      "description": "Collapse duplicate spaces and normalize spacing around punctuation.",
+      "patterns": [
+        "[ \\t\\u00A0]{2,}",
+        "\\s+([,.;:!?])",
+        "([\\(\\[«„])\\s+",
+        "\\s+([\\)\\]»“])"
+      ]
+    },
+    {
+      "id": "punctuation_variant_unification",
+      "action": "normalize",
+      "description": "Normalize dash, quote, and ellipsis variants to one project standard."
+    },
+    {
+      "id": "isolated_ocr_noise",
+      "action": "delete",
+      "description": "Delete isolated punctuation or symbol runs that carry no lexical meaning and recur as scanner noise.",
+      "patterns": [
+        "^[~`*_]{3,}$",
+        "^[|/\\\\]{3,}$"
+      ]
+    }
+  ],
+  "conditional_clean": [
+    {
+      "id": "footnote_markers",
+      "action": "flag",
+      "description": "Footnote callouts may be removed for plain-body corpora, but must be reviewed first.",
+      "patterns": [
+        "\\[(\\d{1,3})\\]",
+        "\\((\\d{1,3})\\)",
+        "(?<=[А-Яа-яЁё])[¹²³⁴⁵⁶⁷⁸⁹]"
+      ]
+    },
+    {
+      "id": "footnote_bodies",
+      "action": "flag",
+      "description": "Footnote bodies often contain real content; separate before deletion."
+    },
+    {
+      "id": "citations_and_bibliographic_refs",
+      "action": "flag",
+      "description": "Bracket citations and author-year references are removable only for target tasks that do not require source tracking.",
+      "patterns": [
+        "\\[[0-9,\\- ]+\\]",
+        "\\([А-ЯA-ZЁ][^\\)]{0,80},\\s*(19|20)\\d{2}\\)"
+      ]
+    },
+    {
+      "id": "toc_index_material",
+      "action": "flag",
+      "description": "Table-of-contents pages, leaders, and index fragments can be removed for正文语料 but should not be dropped blindly."
+    },
+    {
+      "id": "figure_table_formula_labels",
+      "action": "flag",
+      "description": "Figure captions, table notes, and formula numbers may be noise or real data depending on downstream use."
+    },
+    {
+      "id": "watermarks_stamps_marginalia",
+      "action": "flag",
+      "description": "Watermarks, library stamps, and marginal notes require review before deletion."
+    },
+    {
+      "id": "yo_vs_e",
+      "action": "flag",
+      "description": "Unify ё/e only for search and matching layers, not for archival output."
+    },
+    {
+      "id": "latin_cyrillic_confusions",
+      "action": "flag",
+      "description": "Correct OCR confusions such as A/А, C/С, P/Р only after token-level validation."
+    },
+    {
+      "id": "case_normalization",
+      "action": "flag",
+      "description": "Lowercasing is acceptable for retrieval layers, but should not overwrite the preserved clean reading copy."
+    },
+    {
+      "id": "number_and_date_formatting",
+      "action": "flag",
+      "description": "Normalize separators and spaces in numbers and dates only when the original value remains recoverable."
+    }
+  ],
+  "protected_keep": [
+    {
+      "id": "lexical_hyphen_words",
+      "description": "Do not delete true Russian lexical hyphens inside words or names.",
+      "examples": [
+        "из-за",
+        "кто-то",
+        "по-русски",
+        "Санкт-Петербург"
+      ],
+      "patterns": [
+        "\\b[А-Яа-яЁё]+-[А-Яа-яЁё]+\\b"
+      ]
+    },
+    {
+      "id": "abbreviations_with_periods",
+      "description": "Do not drop dots in standard Russian abbreviations.",
+      "examples": [
+        "т.д.",
+        "т.п.",
+        "г.",
+        "стр.",
+        "им."
+      ],
+      "patterns": [
+        "\\b(?:т\\.д\\.|т\\.п\\.|г\\.|стр\\.|им\\.)"
+      ]
+    },
+    {
+      "id": "initials_and_names",
+      "description": "Preserve initials with surnames and initials-only name references.",
+      "patterns": [
+        "\\b[А-ЯЁ]\\.\\s?[А-ЯЁ]\\.\\s?[А-ЯЁа-яё-]+\\b",
+        "\\b[А-ЯЁ]\\.\\s?[А-ЯЁа-яё-]+\\b"
+      ]
+    },
+    {
+      "id": "legal_structural_numbering",
+      "description": "Preserve legal citations, article references, section markers, and list numbering.",
+      "patterns": [
+        "\\bст\\.\\s*\\d+\\b",
+        "§\\s*\\d+",
+        "\\b\\d+(?:\\.\\d+)+\\b",
+        "^[0-9]+\\.$",
+        "^[а-яa-z]\\)"
+      ]
+    },
+    {
+      "id": "quantities_units_symbols",
+      "description": "Keep №, %, currencies, units, temperatures, and date separators.",
+      "patterns": [
+        "№\\s*\\d+",
+        "\\d+\\s*%",
+        "\\d+[,.]\\d+",
+        "\\d+\\s?(?:кг|г|м|см|мм|л|°C|°С)"
+      ]
+    },
+    {
+      "id": "latin_spans_and_identifiers",
+      "description": "Keep true Latin strings such as URLs, emails, part numbers, and institutional abbreviations.",
+      "patterns": [
+        "https?://\\S+",
+        "\\b\\S+@\\S+\\b",
+        "\\b[A-Z]{2,}[A-Z0-9-]*\\b"
+      ]
+    },
+    {
+      "id": "structured_linebreaks",
+      "description": "Do not merge lines blindly inside poems, tables, addresses, or parallel-text layouts."
+    }
+  ]
+}
